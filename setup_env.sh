@@ -49,6 +49,8 @@ then
 	ccache -s
 	CC="ccache $CC"
 	CXX="ccache $CXX"
+fi
+
 PKG_CONFIG_PATH=~/dependency-prefix/lib/pkgconfig
 
 # Debug
