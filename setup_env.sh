@@ -21,26 +21,26 @@ then
 		[ $BUILD_TYPE != "Sanitize" ] && export TIDY=true
 	fi
 
-	sudo apt-get update
+	sudo apt-get update -qq
 
 	if [ $CXX = "clang++" ]
 	then
-		sudo apt-get install clang-3.9 --force-yes -y
+		sudo apt-get install clang-3.9 --force-yes -yqq
 		CXX="clang++-3.9"
 		CC="clang-3.9"
 
 
 	else
 		# GCC
-		sudo apt-get install g++-5 -y
+		sudo apt-get install g++-5 -yqq
 		CXX="g++-5"
 		CC="cc-5"
 	fi
 
-	sudo apt-get install libunwind8-dev libsdl2-dev libboost-locale-dev libboost-filesystem-dev libboost-program-options-dev -y
+	sudo apt-get install libunwind8-dev libsdl2-dev libboost-locale-dev libboost-filesystem-dev libboost-program-options-dev -yqq
 fi
 
-[ "${TIDY}" = "true" ] && sudo apt-get install clang-tidy-3.9 clang-format-3.9 clang-3.9 --force-yes -y
+[ "${TIDY}" = "true" ] && sudo apt-get install clang-tidy-3.9 clang-format-3.9 clang-3.9 --force-yes -yqq
 
 # Setting up ccache if it is in $PATH
 if [ command -v ccache >/dev/null 2>&1 ]
