@@ -86,13 +86,6 @@ $(which time) cmake . -DGLM_INCLUDE_DIR=~/dependency-prefix/include -DCMAKE_BUIL
 # Do the format before the script so the output is cleaner - just showing the diff (if any) and the tidy results
 if [ "${TIDY}" = "true" ]; then make format -j2 > /dev/null; fi
 
-# Start an X server to run tests on
-if [ $TRAVIS_OS_NAME = "linux" ] ; then export DISPLAY=:99.0 ; fi
-if [ $TRAVIS_OS_NAME = "linux" ] ; then sh -e /etc/init.d/xvfb start ; fi
-
-# give xvfb some time to start
-if [ $TRAVIS_OS_NAME = "linux" ] ; then sleep 3 ; fi
-
 # Create the GameState as that triggers the generated source commands
 $(which time) make -j2 && `which time` ctest -V -j 2 && git --no-pager diff --ignore-submodules --stat
 if [ "${TIDY}" = "true" ]; then $(which time) make tidy; fi
