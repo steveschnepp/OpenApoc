@@ -4,6 +4,8 @@
 # The script emits some output, as it's *very* interesting to have it, and
 # travis is clever enough to collapse it
 
+# Failing *FAST*
+set -e
 
 if [ $TRAVIS_OS_NAME = "osx" ]
 then
