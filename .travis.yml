@@ -25,5 +25,6 @@ matrix:
     - os: osx
       env: BUILD_TYPE="Sanitize"
 
-install:
-  - sh setup_env.sh
+install: ./install-dependencies.sh
+
+script: ./build.sh
